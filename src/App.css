@@ -3,8 +3,10 @@ export App.css
 * {
   margin: 0;
   padding: 0;
+  color: blueviolet;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
+          
 }
 
 body {
@@ -20,7 +22,7 @@ body {
   gap: 2rem;
  
   margin-top: 10rem;
- 
+  
 }
 
 img {
@@ -33,10 +35,15 @@ img {
 }
 
 .images {
+  
   transition: all .5s;
 }
+.images > div {
+  overflow: hidden;
+  border-radius: 10px;
+}
 
- p {
+ .images + p {
   color:"blueviolet"
 }
 
