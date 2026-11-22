@@ -2,16 +2,14 @@ import Navbar from "./components/Navbar/Main/Navbar";
 import MainRoute from "./pages/MainRoute";
 
 function App() {
-
-
   return (
-     <>
-     <Navbar/>
+    <>
+      <Navbar />
       <div className="photo">
-        <MainRoute/>
+        <MainRoute />
       </div>
     </>
-  )
+  );
 }
 
-export default App
+export default App;

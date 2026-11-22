@@ -4,6 +4,7 @@ import MobileDrawer from "../MobileDrawer/MobileDrawer";
 import HamburgerButton from "../HamburgerButton/HamburgerButton";
 import "./Navbar.css";
 import type { NavItem } from "../types";
+import { Link } from "react-router-dom";
 
 const DRAWER_ID = "glass-nav-toggle";
 
@@ -70,10 +71,11 @@ const [openDropdown, setOpenDropdown] = useState<string | null>(null);
       />
 
       <div className="glass-nav__inner">
-        <a href="/" className="glass-nav__brand" onClick={closeAll}>
+       {/*  <Link to="/" className="glass-nav__brand" onClick={closeAll}> */}
+        <Link to="/" className="glass-nav__brand">
           <span className="glass-nav__brand-mark" aria-hidden="true" />
           <img src="/garip.webp" alt="logo" width={40} style={{borderRadius:".5rem"}}/>
-        </a>
+        </Link>
 
         <div className="glass-nav__desktop">
           <NavLinks
