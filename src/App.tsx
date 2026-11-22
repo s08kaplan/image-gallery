@@ -1,5 +1,6 @@
 import Navbar from "./components/Navbar/Main/Navbar";
-import ShowImages from "./components/ShowImages";
+import MainRoute from "./pages/MainRoute";
+import Photos from "./pages/photos/Photos";
 
 function App() {
 
@@ -9,7 +10,7 @@ function App() {
      <Navbar/>
       <h1 style={{color:"blueviolet"}}>Image Gallery</h1>
       <div className="photo">
-        <ShowImages />
+        <MainRoute/>
       </div>
     </>
   )

@@ -70,9 +70,9 @@ const [openDropdown, setOpenDropdown] = useState<string | null>(null);
       />
 
       <div className="glass-nav__inner">
-        <a href="#home" className="glass-nav__brand" onClick={closeAll}>
+        <a href="/" className="glass-nav__brand" onClick={closeAll}>
           <span className="glass-nav__brand-mark" aria-hidden="true" />
-          <span>Image</span>
+          <img src="/garip.webp" alt="logo" width={40} style={{borderRadius:".5rem"}}/>
         </a>
 
         <div className="glass-nav__desktop">
