@@ -1,6 +1,5 @@
 import Navbar from "./components/Navbar/Main/Navbar";
 import MainRoute from "./pages/MainRoute";
-import Photos from "./pages/photos/Photos";
 
 function App() {
 
