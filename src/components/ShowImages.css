@@ -143,7 +143,7 @@
   justify-content: space-between;
   gap: 12px;
   padding: 0 4px;
-  color: var(#fff, #f3f4f6);
+  color: #fff;
   font-family: inherit;
   font-size: 0.95rem;
 }
