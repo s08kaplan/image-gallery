@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import "./ShowImages.css";
 
 interface PhotoItem {
@@ -263,22 +264,85 @@ const PHOTO_DATA: PhotoItem[] = [
 ];
 
 export const ShowImages = () => {
+const [selectedPhoto, setSelectedPhoto] = useState<PhotoItem | null>(null);
+
+  useEffect(() => {
+    if (!selectedPhoto) return;
+
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        setSelectedPhoto(null);
+      }
+    };
+
+    document.addEventListener("keydown", onKeyDown);
+    return () => document.removeEventListener("keydown", onKeyDown);
+  }, [selectedPhoto]);
   return (
-    <section className="gallery-grid" aria-label="Photo gallery">
-      {PHOTO_DATA.map((item) => (
-        <article className="gallery-card" key={item.src.large}>
-          <div className="gallery-card__media">
-            <img
-              className="gallery-card__img"
-              src={item.src.large}
-              alt={`Photo by ${item.photographer}`}
-              loading="lazy"
-            />
-          </div>
-          <p className="gallery-card__caption">{item.photographer}</p>
-        </article>
-      ))}
-    </section>
+   <>
+      <section className="gallery-grid" aria-label="Photo gallery">
+        {PHOTO_DATA.map((item) => (
+          <article className="gallery-card" key={item.src.large}>
+            <div
+              className="gallery-card__media"
+              role="button"
+              tabIndex={0}
+              aria-label={`View photo by ${item.photographer}`}
+              onClick={() => setSelectedPhoto(item)}
+              onKeyDown={(e) => {
+                if (e.key === "Enter" || e.key === " ") {
+                  e.preventDefault();
+                  setSelectedPhoto(item);
+                }
+              }}
+            >
+              <img
+                className="gallery-card__img"
+                src={item.src.large}
+                alt={`Photo by ${item.photographer}`}
+                loading="lazy"
+              />
+            </div>
+            <p className="gallery-card__caption">{item.photographer}</p>
+          </article>
+        ))}
+      </section>
+
+      <div
+        className={`lightbox ${selectedPhoto ? "lightbox--open" : ""}`}
+        role="dialog"
+        aria-modal="true"
+        aria-label={
+          selectedPhoto ? `Photo by ${selectedPhoto.photographer}` : "Image preview"
+        }
+        onClick={() => setSelectedPhoto(null)}
+      >
+        <div
+          className="lightbox__panel"
+          onClick={(e) => e.stopPropagation()}
+        >
+          {selectedPhoto && (
+            <>
+              <img
+                className="lightbox__img"
+                src={selectedPhoto.src.large}
+                alt={`Photo by ${selectedPhoto.photographer}`}
+              />
+              <div className="lightbox__footer">
+                <span>{selectedPhoto.photographer}</span>
+                <button
+                  type="button"
+                  className="lightbox__close"
+                  onClick={() => setSelectedPhoto(null)}
+                >
+                  Close
+                </button>
+              </div>
+            </>
+          )}
+        </div>
+      </div>
+    </>
   );
 };
 
